@@ -1,0 +1,8 @@
+{
+  "name": "anthropics/claude-code",
+  "displayName": "Claude Code (Anthropics)",
+  "version": "0.1.0",
+  "description": "Marketplace metadata for the Anthropics Claude Code plugin.",
+  "source": "marketplace",
+  "addedAt": "2026-02-26T00:00:00Z"
+}

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Marathon Mortgage — Zach Mayfield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root{
+        --brand:#1F6F4C; /* deep forest */
+        --accent:#F2A65A; /* warm sunset */
+        --muted:#6B7280;
+      }
+      html,body{height:100%;}
+      body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.6;color:#0f172a}
+      h1,h2{font-family:Merriweather,serif}
+
+      /* layered mountain parallax */
+      .scene{position:relative;overflow:hidden}
+      .mountain{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:160%;pointer-events:none}
+      .m1{z-index:1;opacity:1;filter:drop-shadow(0 8px 20px rgba(31,111,76,0.12));animation:moveSlow 40s linear infinite}
+      .m2{z-index:2;opacity:0.95;filter:drop-shadow(0 6px 18px rgba(31,111,76,0.08));animation:moveMedium 30s linear infinite}
+      .m3{z-index:3;opacity:0.98;filter:drop-shadow(0 4px 12px rgba(31,111,76,0.06));animation:moveFast 20s linear infinite}
+
+      @keyframes moveSlow{from{transform:translateX(-10%) translateY(0)}to{transform:translateX(-20%) translateY(0)}}
+      @keyframes moveMedium{from{transform:translateX(0) translateY(0)}to{transform:translateX(-12%) translateY(0)}}
+      @keyframes moveFast{from{transform:translateX(6%) translateY(0)}to{transform:translateX(-6%) translateY(0)}}
+
+      /* runner animation: translate along a gentle downhill path */
+      .runner{position:absolute;left:18%;bottom:28%;width:64px;height:64px;z-index:6;animation:runLoop 6s cubic-bezier(.22,.9,.35,1) infinite}
+      @keyframes runLoop{
+        0% {transform:translate3d(0,0,0) rotate(0)}
+        40% {transform:translate3d(30vw,-6vh,0) rotate(-6deg)}
+        70% {transform:translate3d(52vw,-12vh,0) rotate(-12deg)}
+        100% {transform:translate3d(80vw,-18vh,0) rotate(-14deg)}
+      }
+
+      /* CTA states */
+      .btn-cta{background:linear-gradient(90deg,var(--brand),#264f3f);color:white;padding:.75rem 1.25rem;border-radius:.6rem;box-shadow:0 8px 24px rgba(31,111,76,0.12);transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
+      .btn-cta:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(31,111,76,0.18)}
+      .btn-cta:active{transform:translateY(-1px)}
+
+      /* subtle noise grain overlay */
+      .grain{position:absolute;inset:0;pointer-events:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="n"><feTurbulence baseFrequency="0.9" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.02"/></svg>');mix-blend-mode:overlay}
+
+      /* responsive tweaks */
+      @media (max-width:640px){.runner{width:44px;height:44px;left:6%;bottom:20%}}
+    </style>
+  </head>
+  <body class="bg-white text-slate-900">
+    <div class="grain"></div>
+
+    <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <img src="brand_assets/MarathonMortgageLogo.png" alt="Marathon Mortgage" class="h-12 w-auto object-contain">
+        <div class="hidden md:block">
+          <div class="text-sm text-slate-600">Marathon Mortgage</div>
+          <div class="text-xs text-slate-500">Zach Mayfield — NMLS 1698485</div>
+        </div>
+      </div>
+      <nav class="space-x-4">
+        <a href="#bio" class="text-sm text-slate-700 hover:text-[color:var(--brand)] focus:outline-none">About</a>
+        <a href="#contact" class="btn-cta text-sm inline-block">Get Lower Rates</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="scene relative h-[70vh] min-h-[420px] bg-gradient-to-t from-white to-slate-50 overflow-hidden">
+        <!-- mountain layers (simple SVG shapes) -->
+        <svg class="mountain m1" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden>
+          <path d="M0 300 L200 150 L400 300 L600 120 L800 280 L1000 130 L1200 300 L1200 400 L0 400 Z" fill="#e9f6f1"/>
+        </svg>
+        <svg class="mountain m2" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMax slice" aria-hidden>
+          <path d="M0 320 L150 180 L320 320 L480 140 L640 320 L820 160 L1000 320 L1200 160 L1200 420 L0 420 Z" fill="#d8efe6"/>
+        </svg>
+        <svg class="mountain m3" viewBox="0 0 1200 440" preserveAspectRatio="xMidYMax slice" aria-hidden>
+          <path d="M0 360 L220 160 L420 360 L640 130 L820 360 L980 180 L1200 360 L1200 440 L0 440 Z" fill="var(--brand)" opacity="0.12"/>
+        </svg>
+
+        <!-- runner (simple circle + shadow) -->
+        <div class="runner">
+          <svg viewBox="0 0 64 64" class="w-full h-full" aria-hidden>
+            <circle cx="32" cy="28" r="10" fill="var(--accent)"/>
+            <rect x="5" y="46" width="54" height="6" rx="3" fill="rgba(0,0,0,0.12)" transform="translate(0,8) scale(1,.6)"/>
+          </svg>
+        </div>
+
+        <div class="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-12 z-10">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight" style="letter-spacing:-0.03em">Marathon Mortgage</h1>
+          <p class="mt-4 max-w-2xl text-lg md:text-xl text-slate-700">Lower rates. Local expertise. Marathon persistence—because the long run wins.</p>
+          <div class="mt-6">
+            <a href="#contact" class="btn-cta inline-flex items-center gap-3">See Rates</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="bio" class="max-w-5xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          <div class="md:col-span-1 flex flex-col items-start gap-4">
+            <img src="brand_assets/MarathonMortgageLogo.png" alt="Zach Mayfield" class="h-28 w-auto object-contain rounded-md shadow-[0_12px_30px_rgba(31,111,76,0.06)]">
+            <h2 class="text-2xl font-semibold">Zach Mayfield</h2>
+            <div class="text-sm text-slate-600">NMLS 1698485</div>
+            <a href="#contact" class="mt-4 btn-cta text-sm inline-block">Contact Zach</a>
+          </div>
+          <div class="md:col-span-2 text-slate-800 text-base leading-7">
+            <p>Zach Mayfield (NMLS 1698485) has been originating residential mortgage loans since 2017, helping homebuyers and homeowners navigate one of life’s biggest financial decisions with clarity and confidence. After gaining experience at large, nationwide lenders, Zach saw firsthand how big-box mortgage companies often lack awareness of local markets and struggle to offer truly competitive pricing. That experience shaped his commitment to doing things differently.</p>
+
+            <p class="mt-4">Today, Zach focuses on delivering the best possible rates paired with unmatched service. He understands that every market is unique and every borrower’s situation deserves personal attention—not a one-size-fits-all approach. His goal is simple: provide transparent guidance, strategic loan options, and consistent communication from the initial application all the way through closing. Clients can count on continuous accessibility and direct contact throughout the entire process, ensuring no questions go unanswered and no details fall through the cracks.</p>
+
+            <p class="mt-4">Outside of mortgage lending, Zach brings the same discipline and endurance to his personal life. He is an ultra-marathon runner who thrives on long-distance challenges, a mindset that translates directly into his persistence and dedication to his clients. During the summers, he serves as a race director for Great Lakes Endurance in Michigan’s Upper Peninsula, helping organize endurance events that bring athletes and communities together.</p>
+
+            <p class="mt-4">Zach is married to his wonderful wife, Rachel, and shares his home with two greyhound dogs, Oscar and Bruce. Whether he’s guiding borrowers to the closing table or directing a race across the rugged terrain of the Upper Peninsula, Zach is driven by preparation, commitment, and follow-through. His clients value not only his industry knowledge and competitive loan options, but also the steady, reliable support he provides every step of the way.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="bg-slate-50 py-12">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <div class="text-sm text-slate-600">Ready to talk about rates?</div>
+            <div class="text-lg font-semibold">Contact Zach — NMLS 1698485</div>
+          </div>
+          <div>
+            <a class="btn-cta" href="mailto:hello@marathonmortgage.com">Email Zach</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-8 text-center text-sm text-slate-500">
+      <div class="max-w-4xl mx-auto px-6">© Marathon Mortgage — All rights reserved</div>
+    </footer>
+  </body>
+</html>
